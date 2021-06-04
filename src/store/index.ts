@@ -7,7 +7,6 @@ import * as vxt from "./VuexTypes";
 export interface State {
   user: User;
   exception: string;
-  // Integrating with backend
   isLogin: boolean;
 }
 
@@ -17,6 +16,7 @@ const myState: State = {
   isLogin: false,
 };
 const myMutations: MutationTree<State> = {
+  [vxt.UPDATE_USER]: (state, data: User) => (state.user = data),
   [vxt.UPDATE_EXCEPTION]: (state, data: string) => (state.exception = data),
 };
 

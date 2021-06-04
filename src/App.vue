@@ -1,8 +1,22 @@
 <template>
-  <router-link to="/"></router-link>
-  <router-view />
+  <div id="app">
+    <router-view id="router" :key="$route.path" />
+    <alertdialog v-if="exception.length > 0" />
+  </div>
 </template>
-
+<script lang="ts">
+import { defineAsyncComponent, defineComponent } from "vue";
+import { mapState } from "vuex";
+const alertdialog = defineAsyncComponent(
+  () => import("@/components/AlertDialog.vue")
+);
+export default defineComponent({
+  components: { alertdialog },
+  computed: {
+    ...mapState(["exception"]),
+  },
+});
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

@@ -10,6 +10,7 @@
             required="required"
             placeholder="用户名"
             name="username"
+            v-model="userForm.username"
         /></label>
         <label
           ><input
@@ -18,6 +19,7 @@
             required="required"
             placeholder="密码"
             name="password"
+            v-model="userForm.password"
         /></label>
         <button class="button" id="button" @click="login">登录</button>
       </form>
@@ -34,18 +36,18 @@ import { computed, defineComponent, Ref, ref } from "vue";
 import { Store, useStore } from "vuex";
 
 interface User {
-  number?: string;
+  username?: string;
   password?: string;
 }
 
 function useLogin(userForm: Ref<User>, store: Store<State>) {
   const login = () => {
     const user = {
-      number: userForm.value.number,
+      username: userForm.value.username,
       password: userForm.value.password,
     };
     store.dispatch(LOGIN, user);
-    userForm.value.number = "";
+    userForm.value.username = "";
     userForm.value.password = "";
   };
   return {

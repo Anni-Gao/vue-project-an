@@ -23,7 +23,7 @@ mock.onPost("login").reply((c) => {
   // 此时请求的js对象已转为json字符串。因此需要转换回JS对象
   const data = c.data;
   const { username, password } = JSON.parse(data);
-  if (username == "admin" && password == "123456") {
+  if (username == "admin" && password == "admin") {
     resulVO.code = 200;
     resulVO.data = { level: "admin" };
     resulVO.message = "";
@@ -70,13 +70,3 @@ mock.onGet("home").reply((c) => {
   resulVO.message = "无权限";
   return [200, resulVO];
 });
-
-// mock.onGet(path("courses/{cid}")).reply(c => {
-//   // 默认不支持从正则表达式提取变量，可手动实现
-//   const reg = /courses\/(\d+)/;
-//   const cid = c.url?.match(reg)![1];
-//   const course = listCourses().find(h => h.id == cid);
-//   resulVO.code = 200;
-//   resulVO.data = { course: course };
-//   return [200, resulVO];
-// });
